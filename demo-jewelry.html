@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Lila — Handmade Jewellery Studio</title>
+<meta name="description" content="Handmade jewellery, made in small batches. Silver, gold-fill and natural stones.">
+<style>
+  :root{
+    --ink:#1b1714; --ink-soft:#5d544c; --paper:#f7f2ea; --paper-2:#efe6d8;
+    --gold:#b08d57; --gold-deep:#8c6b3d; --line:rgba(27,23,20,.14);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:rgba(247,242,234,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:var(--serif);font-size:21px;letter-spacing:.14em;text-transform:uppercase}
+  .nav-links{display:flex;gap:30px;font-size:14px;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--ink)}
+  .cart{font-size:13px;border:1px solid var(--line);padding:8px 16px;border-radius:999px}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:76px 0 88px}
+  .hero h1{font-family:var(--serif);font-size:clamp(40px,5.6vw,68px);line-height:1.04;margin:18px 0 22px;font-weight:400;letter-spacing:-.015em}
+  .hero p{font-size:17px;color:var(--ink-soft);max-width:44ch;margin:0 0 32px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);padding:15px 30px;border-radius:999px;font-size:14px;letter-spacing:.02em;transition:.25s}
+  .btn:hover{background:var(--gold-deep)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);margin-left:12px}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .hero-art{position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:
+     radial-gradient(120% 90% at 20% 10%,#e8dcc7 0%,#d9c8ad 45%,#c3ab89 100%)}
+  .hero-art .ring{position:absolute;inset:0;margin:auto;width:58%;aspect-ratio:1;border-radius:50%;
+     border:14px solid rgba(255,255,255,.55);box-shadow:0 30px 60px rgba(80,60,35,.28),inset 0 0 40px rgba(255,255,255,.5)}
+  .hero-art .ring:after{content:"";position:absolute;inset:18%;border-radius:50%;border:2px solid rgba(140,107,61,.5)}
+  .hero-art .cap{position:absolute;bottom:22px;left:22px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5b4a33}
+
+  /* marquee strip */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden}
+  .strip-in{display:flex;gap:60px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;justify-content:center;flex-wrap:wrap}
+
+  /* products */
+  section{padding:88px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;gap:20px;flex-wrap:wrap}
+  .sec-head h2{font-family:var(--serif);font-size:clamp(28px,3.4vw,42px);font-weight:400;margin:10px 0 0}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{background:#fffdf9;border:1px solid var(--line)}
+  .ph{aspect-ratio:1/1;position:relative;overflow:hidden}
+  .ph .obj{position:absolute;inset:0;margin:auto;border-radius:50%}
+  .card-meta{padding:18px 20px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .card h3{font-size:14px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
+  .card span{font-size:12px;color:var(--ink-soft)}
+  .price{font-family:var(--serif);font-size:16px;white-space:nowrap}
+  .c1 .ph{background:linear-gradient(150deg,#efe4d2,#dccbb2)}
+  .c1 .obj{width:46%;height:46%;border:10px solid #fff;box-shadow:0 20px 34px rgba(80,60,35,.22)}
+  .c2 .ph{background:linear-gradient(150deg,#e9e4dc,#cfc6b8)}
+  .c2 .obj{width:34%;height:34%;background:linear-gradient(140deg,#c8a15c,#8c6b3d);box-shadow:0 18px 30px rgba(80,60,35,.25)}
+  .c3 .ph{background:linear-gradient(150deg,#e7e9e4,#c9cfc7)}
+  .c3 .obj{width:40%;height:52%;border-radius:999px;background:linear-gradient(160deg,#a8b5a6,#7d8b7c)}
+  .c4 .ph{background:linear-gradient(150deg,#f1e7e4,#dcc7c1)}
+  .c4 .obj{width:52%;height:24%;border-radius:999px;border:8px solid #fff;box-shadow:0 16px 28px rgba(80,60,35,.2)}
+  .c5 .ph{background:linear-gradient(150deg,#eae6ef,#cec7d8)}
+  .c5 .obj{width:38%;height:38%;background:linear-gradient(140deg,#8e86a3,#605a75)}
+  .c6 .ph{background:linear-gradient(150deg,#efe9df,#d6c9b5)}
+  .c6 .obj{width:44%;height:44%;border:3px solid #b08d57;border-radius:6px;transform:rotate(12deg)}
+
+  /* about */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .split h2{font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;margin:14px 0 20px;line-height:1.15}
+  .split p{color:var(--ink-soft);margin:0 0 18px}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px;border-top:1px solid var(--line);padding-top:26px}
+  .facts b{display:block;font-family:var(--serif);font-size:26px;font-weight:400}
+  .facts span{font-size:12px;color:var(--ink-soft);letter-spacing:.04em}
+
+  /* quotes */
+  .quotes{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  .q{background:#fffdf9;padding:28px;border:1px solid var(--line)}
+  .stars{color:var(--gold);font-size:13px;letter-spacing:.2em;margin-bottom:14px}
+  .q p{font-family:var(--serif);font-size:17px;line-height:1.5;margin:0 0 16px}
+  .q span{font-size:12px;color:var(--ink-soft)}
+
+  /* cta */
+  .cta{text-align:center;padding:96px 0}
+  .cta h2{font-family:var(--serif);font-size:clamp(30px,4vw,50px);font-weight:400;margin:0 0 16px}
+  .cta p{color:var(--ink-soft);max-width:52ch;margin:0 auto 32px}
+
+  footer{border-top:1px solid var(--line);padding:56px 0 40px;font-size:13px;color:var(--ink-soft)}
+  .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+  .fgrid h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin:0 0 14px}
+  .fgrid a{display:block;margin-bottom:9px}
+  .fgrid a:hover{color:var(--gold-deep)}
+  .fbot{display:flex;justify-content:space-between;gap:20px;padding-top:22px;border-top:1px solid var(--line);flex-wrap:wrap}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;gap:34px;padding:44px 0 56px}
+    .grid,.qgrid{grid-template-columns:1fr 1fr}
+    .split{grid-template-columns:1fr;gap:34px}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:560px){
+    .grid,.qgrid{grid-template-columns:1fr}
+    section{padding:56px 0}
+    .facts{grid-template-columns:1fr;gap:14px}
+    .btn{width:100%;justify-content:center}
+    .btn-ghost{margin:10px 0 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">Maison&nbsp;Lila</div>
+    <nav class="nav-links">
+      <a href="#shop">Shop</a><a href="#about">Our Craft</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="cart" href="#shop">Bag&nbsp;(0)</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Small batch · Hand finished</div>
+      <h1>Jewellery that keeps a story.</h1>
+      <p>Made by hand in a small studio, in runs of twenty. Recycled silver, gold-fill and stones we can name the origin of.</p>
+      <a class="btn" href="#shop">See the collection →</a>
+      <a class="btn btn-ghost" href="#contact">Order on WhatsApp</a>
+    </div>
+    <div class="hero-art" role="img" aria-label="Handmade ring in the studio">
+      <div class="ring"></div>
+      <div class="cap">No.14 · Hammered band</div>
+    </div>
+  </div>
+
+  <div class="strip"><div class="strip-in">
+    <span>Free shipping over $80</span><span>30-day returns</span><span>Gift wrapping included</span><span>Made in small batches</span>
+  </div></div>
+
+  <section id="shop" class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">The collection</div>
+        <h2>New this season</h2>
+      </div>
+      <a href="#shop" style="font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:2px">View all pieces</a>
+    </div>
+    <div class="grid">
+      <article class="card c1"><div class="ph"><div class="obj"></div></div>
+        <div class="card-meta"><div><h3>Hammered Band</h3><span>Recycled silver</span></div><div class="price">$64</div></div></article>
+      <article class="card c2"><div class="ph"><div class="obj"></div></div>
+        <div class="card-meta"><div><h3>Solitaire Drop</h3><span>14k gold-fill</span></div><div class="price">$98</div></div></article>
+      <article class="card c3"><div class="ph"><div class="obj"></div></div>
+        <div class="card-meta"><div><h3>Jade Pendant</h3><span>Natural stone</span></div><div class="price">$120</div></div></article>
+      <article class="card c4"><div class="ph"><div class="obj"></div></div>
+        <div class="card-meta"><div><h3>Open Cuff</h3><span>Brushed brass</span></div><div class="price">$72</div></div></article>
+      <article class="card c5"><div class="ph"><div class="obj"></div></div>
+        <div class="card-meta"><div><h3>Amethyst Studs</h3><span>Sterling posts</span></div><div class="price">$56</div></div></article>
+      <article class="card c6"><div class="ph"><div class="obj"></div></div>
+        <div class="card-meta"><div><h3>Signet Square</h3><span>Made to order</span></div><div class="price">$86</div></div></article>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="split">
+      <div class="hero-art" style="aspect-ratio:1/1;background:radial-gradient(120% 90% at 30% 20%,#e9dfcd,#cdb695 60%,#b79f7c)">
+        <div class="ring" style="width:44%;border-width:10px"></div>
+      </div>
+      <div>
+        <div class="eyebrow">Our craft</div>
+        <h2>Twenty pieces at a time, because hands get tired.</h2>
+        <p>Every order is finished by one person, start to end. That means a ring takes four days, not four minutes — and it means we can repair it for you in a decade.</p>
+        <p>We buy recycled metal and traceable stones, and we keep a record of every batch so you always know where your piece came from.</p>
+        <div class="facts">
+          <div><b>1,400+</b><span>Pieces shipped</span></div>
+          <div><b>4.9</b><span>Average rating</span></div>
+          <div><b>7 yrs</b><span>Repair promise</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="quotes">
+    <div class="wrap">
+      <div class="sec-head"><div><div class="eyebrow">Reviews</div><h2>What buyers say</h2></div></div>
+      <div class="qgrid">
+        <div class="q"><div class="stars">★★★★★</div><p>“Ordered a custom band for my sister's wedding. The fit was perfect and it arrived in nine days.”</p><span>— Sara M., verified buyer</span></div>
+        <div class="q"><div class="stars">★★★★★</div><p>“The photos don't do it justice. Packaging alone felt like a gift.”</p><span>— Daniel K., verified buyer</span></div>
+        <div class="q"><div class="stars">★★★★★</div><p>“I've bought three pieces. Never had a single issue, and the repair service is real.”</p><span>— Aisha R., verified buyer</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap cta">
+    <div class="eyebrow">Made to order</div>
+    <h2>Tell us what you have in mind.</h2>
+    <p>Send a photo or a sketch on WhatsApp and we'll come back within a day with a price and a timeline. No deposit until you approve the design.</p>
+    <a class="btn" href="#contact">Message us on WhatsApp</a>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="brand" style="font-size:18px;margin-bottom:12px">Maison Lila</div>
+        <p style="max-width:34ch;margin:0">Handmade jewellery studio. Small batches, real materials, repairs for life.</p>
+      </div>
+      <div><h4>Shop</h4><a href="#shop">Rings</a><a href="#shop">Earrings</a><a href="#shop">Necklaces</a><a href="#shop">Gift cards</a></div>
+      <div><h4>Help</h4><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Size guide</a><a href="#">Repairs</a></div>
+      <div><h4>Studio</h4><a href="#about">Our craft</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><a href="#">Instagram</a></div>
+    </div>
+    <div class="fbot"><span>© 2026 Maison Lila. All rights reserved.</span><span>Demo layout — built by Saba Soleimanzadeh</span></div>
+  </div>
+</footer>
+</body>
+</html>
